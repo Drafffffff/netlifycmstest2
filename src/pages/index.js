@@ -1,43 +1,45 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link, graphql } from "gatsby"
-
-import Bio from "../components/bio"
-import Layout from "../components/layout"
+import Layout from "../layout/homeLayout"
 import SEO from "../components/seo"
-import { rhythm } from "../utils/typography"
+import styles from "../styles/homepost.module.scss"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
+  const [url, setUrl] = useState()
 
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
-      <Bio />
+    <Layout location={location} title={siteTitle} url={url}>
+      <SEO title="首页" />
+
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
-          <article key={node.fields.slug}>
-            <header>
-              <h3
-                style={{
-                  marginBottom: rhythm(1 / 4),
-                }}
-              >
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+          <div key={node.fields.slug} className={styles.article}>
+            <div>
+              <div className={styles.imgCover}></div>
+              <div>
+                <Link
+                  style={{ boxShadow: `none` }}
+                  to={node.fields.slug}
+                  className={styles.link}
+                  onMouseOver={() => {
+                    // console.log(node.frontmatter)
+                    let imgurl = node.frontmatter.background_image.publicURL
+                    if (imgurl) setUrl(imgurl)
+                    document.querySelector("video").style.display = "none"
+                  }}
+                  onMouseOut={() => {
+                    document.querySelector("video").style.display = "block"
+                  }}
+                >
                   {title}
                 </Link>
-              </h3>
+              </div>
               <small>{node.frontmatter.date}</small>
-            </header>
-            <section>
-              <p
-                dangerouslySetInnerHTML={{
-                  __html: node.frontmatter.description || node.excerpt,
-                }}
-              />
-            </section>
-          </article>
+            </div>
+          </div>
         )
       })}
     </Layout>
@@ -46,7 +48,7 @@ const BlogIndex = ({ data, location }) => {
 
 export default BlogIndex
 
-export const pageQuery = graphql`
+export const homeQuery = graphql`
   query {
     site {
       siteMetadata {
@@ -64,6 +66,9 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            background_image {
+              publicURL
+            }
           }
         }
       }
