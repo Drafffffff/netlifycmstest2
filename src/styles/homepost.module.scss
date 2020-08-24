@@ -1,0 +1,33 @@
+.article {
+  padding: 150px 0;
+  text-align: center;
+  font-size: 4rem;
+  text-decoration: underline;
+  small {
+    font-size: 0.8rem;
+    text-decoration: none;
+  }
+  &:first-child {
+    padding-top: 300px;
+  }
+  z-index: 100;
+}
+
+.link {
+  --fill-color: #ffffff;
+  position: relative;
+  display: block;
+  padding: 4px 0;
+  font: 900 3rem Raleway, sans-serif;
+  text-decoration: none;
+  // -webkit-text-stroke: 2px var(--fill-color);
+  background: linear-gradient(var(--fill-color) 0 100%) top / 0 no-repeat;
+  color: var(--fill-color);
+  transition: 0.5s ease;
+
+  &:hover {
+    background-size: 100%;
+    color: black;
+  }
+}
+
