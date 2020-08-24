@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import Styles from "../styles/home.module.scss"
 import Nav from "../components/nav"
+import Footer from "../components/footer"
 // import { Link } from "gatsby"
 const Layout = ({ title, children, url }) => {
   console.log(url)
@@ -51,11 +52,7 @@ const Layout = ({ title, children, url }) => {
       </section>
       <main className={Styles.mainContainer}>{children}</main>
 
-      <footer>
-        © {new Date().getFullYear()}, Built with
-        {` `}
-        <a href="https://www.gatsbyjs.org">Gatsby</a>
-      </footer>
+      <Footer />
     </div>
   )
 }
