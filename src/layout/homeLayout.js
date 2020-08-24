@@ -2,6 +2,7 @@ import React from "react"
 import Styles from "../styles/home.module.scss"
 import Nav from "../components/nav"
 import Footer from "../components/footer"
+import video from "../../static/video/我们.mp4"
 // import { Link } from "gatsby"
 const Layout = ({ title, children, url }) => {
   console.log(url)
@@ -30,10 +31,7 @@ const Layout = ({ title, children, url }) => {
           style={{ backgroundImage: `url(${url})` }}
         >
           <video loop muted autoPlay>
-            <source
-              src="http://pic.drafff.art/%E6%88%91%E4%BB%AC.mp4"
-              type="video/mp4"
-            />
+            <source src={video} type="video/mp4" />
           </video>
           <div id="imageCover" className={Styles.imageCover}></div>
           <div className={Styles.mainLogo}></div>
