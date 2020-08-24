@@ -1,9 +1,13 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Link } from "gatsby"
 import styles from "../styles/home.module.scss"
-export default function nav() {
-  let pageHeight = Document.body.scrollHeight - window.screen.height * 0.9
-  console.log(pageHeight)
+export default function Nav() {
+  const [pageHeight, setpageHeight] = useState()
+
+  useEffect(() => {
+    setpageHeight(document.body.scrollHeight - window.screen.height * 0.9)
+  })
+  // console.log(pageHeight)
   return (
     <div className={styles.nav} style={{ height: pageHeight }}>
       <div className={styles.navContainer}>

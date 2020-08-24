@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Styles from "../styles/home.module.scss"
 import Nav from "../components/nav"
 import Footer from "../components/footer"
