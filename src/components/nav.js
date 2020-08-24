@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styles from "../styles/home.module.scss"
 export default function nav() {
-  let pageHeight = document.body.scrollHeight - window.screen.height * 0.9
+  let pageHeight = Document.body.scrollHeight - window.screen.height * 0.9
   console.log(pageHeight)
   return (
     <div className={styles.nav} style={{ height: pageHeight }}>
