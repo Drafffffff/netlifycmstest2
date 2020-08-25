@@ -3,9 +3,9 @@ import Styles from "../styles/home.module.scss"
 import Nav from "../components/nav"
 import Footer from "../components/footer"
 import video from "../../static/video/我们.mp4"
+import Img from "gatsby-image"
 // import { Link } from "gatsby"
 const Layout = ({ title, children, url }) => {
-  console.log(url)
   return (
     <div className={Styles.outContainer}>
       <Nav></Nav>

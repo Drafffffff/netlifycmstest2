@@ -8,11 +8,9 @@ const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
   const posts = data.allMarkdownRemark.edges
   const [url, setUrl] = useState()
-
   return (
     <Layout location={location} title={siteTitle} url={url}>
       <SEO title="首页" />
-
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug
         return (
@@ -25,8 +23,9 @@ const BlogIndex = ({ data, location }) => {
                   to={node.fields.slug}
                   className={styles.link}
                   onMouseOver={() => {
-                    // console.log(node.frontmatter)
-                    let imgurl = node.frontmatter.background_image.publicURL
+                    let imgurl =
+                      node.frontmatter.background_image.childImageSharp.sizes
+                        .srcWebp
                     if (imgurl) setUrl(imgurl)
                     document.querySelector("video").style.display = "none"
                   }}
@@ -67,7 +66,11 @@ export const homeQuery = graphql`
             title
             description
             background_image {
-              publicURL
+              childImageSharp {
+                sizes(webpQuality: 90)  {
+                  srcWebp
+                }
+              }
             }
           }
         }
